@@ -66,4 +66,12 @@ Sebenarnya halaman dan rout form edit data ini hampir sama dengan halaman form t
 01. Buat raout dengan metode app.get(). Atur agar requestnya berupa url '/contact/edit/:nama',
 02. Lakukan pencarian data kontak berdasarkan nama yang dikirim di url nya. Nama yang ada di url tersebut telah ditangkap oleh req.params.nama,
 03. Lakukan pencarian menggunakan function findContact() yang sudah dibuat sebelumnya.
-04. Kirim hasil pencarian agar dapat ditampilkan dihalaman edit-contact.ejs
+04. Kirim hasil pencarian agar dapat ditampilkan dihalaman edit-contact.ejs. Kirim saat melakukan render halaman edit-contact.ejs
+
+MENAMPILKAN DATA PADA FORM SESUAI DENGAN DATA YANG AKAN DIHAPUS
+Pada tahap ini akan sedikit memberi value pada form input di edit-contact.ejs
+01. Manfaatkan data yang dikirim oleh rout yang menangani edit data contact.
+02. Cara menangkap data tersebut agar tampil dihalaman edit-contact.ejs adalah dengan menambahkan atribut value pada tag input, kemudian isi value tersebut dengan data yang sesuai dengan labelnya.
+    contoh:
+        value="<%= contact.email %>
+03. Dengan begitu maka form edit data sudah terisi dengan data-data sesuai dengan data nama yang akan diedit.
