@@ -2,7 +2,7 @@ const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const req = require('express/lib/request');
 const res = require('express/lib/response');
-const { loadContact, findContact, addContact, cekDuplikat } = require('./utils/contacts');
+const { loadContact, findContact, addContact, cekDuplikat, deleteContact } = require('./utils/contacts');
 const { body, validationResult, check } = require('express-validator');
 const session = require('express-session');
 const cookieParser = require('cookie-parser')
@@ -120,6 +120,28 @@ app.post('/contact', [
     }
 })
 
+//Proses hapus / delet data
+app.get('/contact/delete/:nama', (req, res) => {
+    // Cari data yang dikirim didalam contacts.json, dimana data yang dikirim adalah data nama
+    const contact = findContact(req.params.nama)
+
+    //Jika data yang dikirim TIDAK ADA di database, sehingga 'const contact' tidak ada isinya, maka proses selanjutnya adalah
+    if(!contact){
+        res.status(404)
+        res.send(`<h1>404<br>Data yang akan dihapus tidak ada</h1>`)
+    }
+    // Jiika Berhasil (ada isinya)
+    else{
+        // Hapus data yang dikirim, dimana data yang dikirim ditangkap oleh req.params.nama
+        deleteContact(req.params.nama)
+
+        //Kasih Notifikasi bahwa data berhasil dihapus. Bisa menggunakan flash message yang sudah pernah dibuat
+        req.flash('pesan', 'Data contact berhasil dihapus')
+
+        // Kemudian kembalikan kehalaman contact.ejs
+        res.redirect('/contact') //Setelah data disimpan maka langsung tampil halaman '/contact'
+    }
+})
 //Setting halaman Detail Contact
 app.get('/contact/:nama', (req, res) => {
     // res.sendFile('./contact.html', {root: __dirname})

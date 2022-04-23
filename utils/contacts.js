@@ -44,4 +44,19 @@ const cekDuplikat = (nama) => {
     return cotacts.find((contact) => contact.nama === nama)
 }
 
-module.exports = { loadContact, findContact, addContact, cekDuplikat }
+// Delete contact
+const deleteContact = (nama) => {
+    // 01. Load dulu data contactnya dengan function yang sudah dibuat
+    const contacts = loadContact()
+
+    //02. Lakukan filter terhadap contacts sesuai dengan data nama yang dikirim
+    const filteredContacts = contacts.filter((contact) => contact.nama !== nama)
+    // Function diatas akan melakukan filter berdasarkan 'nama' yang dikirim. Kemudian akan mengembalikan kumpulan data berupa array yang didalamnya tidak mengandung unsur 'nama' yang dikirim, hal ini sesuai perintahnya yaitu contact.nama !== nama. Sehingga const filteredContacts akan berisi data baru yang sudah tidak ada data 'nama' yang dikirim
+
+    // 03. Simpan data baru yang ada di 'const filteredContacts' dengan menggunakan function saveContacts() yang sudah dibuat sebelumnya
+
+    saveContacts(filteredContacts)
+
+}
+
+module.exports = { loadContact, findContact, addContact, cekDuplikat, deleteContact }
