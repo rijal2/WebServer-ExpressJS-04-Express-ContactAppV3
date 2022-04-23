@@ -12,5 +12,15 @@ Skenario.
 
 MENAMBAH TOMBOL HAPUS
 01. Buka file detail.ejs
-02. Buat tombol menggunakan tag <a> kemudian hias dengan bootstrap
+02. Buat tombol menggunakan tag <a> kemudian hias dengan bootstrap. arahkan href nya ke '/contact/delelte/:nama'.
+03. Buat rout nya menggunaka metode app.get().
+
+    app.get('/contact/delete/:nama', (req, res) => {
+
+    })
+
+04. hati-hati dalam meletakkan rout tersebut, jangan sampai berada dibawah metode yang merender halaman detail,
+    app.get('/contact/:nama', (req, res) => {
+        
+    })
 
