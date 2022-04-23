@@ -85,4 +85,31 @@ Sebelum memproses data, sebaiknya terlebih dahulu dibuat sebuah elemen input pad
     Ket:
     Tag tersebut harus disimpan di dalam tag form.
 
-02. 
+BUAT ROUT UBAH/EDIT DATA
+Pada halaman edit-contact.ejs, tag form memiliki beberapa atribut seperti dibawah ini
+    <form method="post" action="/contact/update"> ... </form>
+
+Ket:
+Method post bertujuan untuk memberikan tanda bahwa ada sebuah permintaan yang menginginkan data yang dimaksud untuk  diubah/diedit atau dihapus. Jadi pada Halaman Form Edit maupun Form tambah data, keduanya menggunkan method post.
+Sedangkan atribut action adalah url request yang dikirim oleh user. url ini harus sama dengan url yang ada di rout edit data.
+
+01. Buat Rout Proses Ubah data di app.js
+    app.post('/contact/update', (req, res) = {})
+
+    Ket:
+    Metode pada rout harus sama dengan method yang ada pada tag form. Url requestnya juga harus sama dengan nilai dari atribut action yang ada di tag form tersebut
+
+02. Untuk melihat data apa saja yang ditangkap oleh rout ini bisa memanfaatkan res.send(), yang mengirimkan data-data yang ada di tag form, dimana data-data ini telah ditangkap dan tersimpan di req.body .Caranya:
+    app.post('/contact/update', (req, res) = {
+        res.send(req.body)
+    })
+
+    maka, setelah tombol simpan perubahan data diklik, browser akan menampilkan semua data yang ada di form tadi.
+
+    {
+        oldName: "Nama5 ",
+        nama: "Nama5",
+        email: "email5@gmail.com",
+        nohp: "0812314234221"
+    }
+

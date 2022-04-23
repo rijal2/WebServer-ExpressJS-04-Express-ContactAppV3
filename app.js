@@ -143,8 +143,8 @@ app.get('/contact/delete/:nama', (req, res) => {
     }
 })
 
-// Edit data contact
-//Halaman Form Tambah data kontak
+// Edit data contact (Ada dua rout)
+// 01. Rout Halaman Form Tambah data kontak
 app.get('/contact/edit/:nama', (req, res) => {
     //Tangkap data nama yang dikirim melalui url diatas. Kemudian lakukan pencarian berdasarkan data nama tersebut di database menggunakan function yang telah dibuat, yaitu findContact(nama)
     const contact = findContact(req.params.nama);
@@ -156,6 +156,11 @@ app.get('/contact/edit/:nama', (req, res) => {
         // Selain mengirimkan tittle dan layout, kirimkan juga data contact yang ada pada variable const contact diatas
         contact,
     })
+})
+
+// 02. Roust Proses Ubah / edit data
+app.post('/contact/update', (req, res) => {
+    res.send(req.body)
 })
 
 //Setting halaman Detail Contact
