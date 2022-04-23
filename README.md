@@ -1,7 +1,7 @@
 # WebServer-ExpressJS-05-Express-ContactAppV3
 Lanjutan dari seri sebelumnya.
 
-PADA SESI KALI INI AKAN DIJELASKAN CARA MENAMBAHKAN FITUR DELETE DAN UPDATE DATA KONTAK.
+PADA SESI KALI INI AKAN DIJELASKAN CARA MENAMBAHKAN FITUR DELETE DAN UPDATE (EDIT) DATA KONTAK.
 
 Pada sesi ini proses penambahan fitur update tidak menggunakan app.put() tapi masih memanfaatkan app.get().
 
@@ -49,3 +49,13 @@ Proses pembuatan function hapus/delete data
 
 03. Export dan import function tersebut
 04. Gunakan didalam metode hapus data
+05. Beri notifikasi bahwa data berhasil dihapus, dengan menggunakan flash message yang sudah dibuat sebelumnya.
+06. Arahkan tampilan browser ke halaman contact.ejs setelah data berhasil dihapus.
+
+
+UBAH (EDIT) DATA KONTAK
+Tombol ubah data akan diletakkan di halaman detail.ejs didepan tombol hapus
+
+BUAT TOMBOL EDIT
+01. Buka kembali detail.ejs
+02. duplikat tag yang menampilkan tombol hapus, kemudian edit beberap kelas nya, href nya, dan namanya
