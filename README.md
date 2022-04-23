@@ -59,3 +59,11 @@ Tombol ubah data akan diletakkan di halaman detail.ejs didepan tombol hapus
 BUAT TOMBOL EDIT
 01. Buka kembali detail.ejs
 02. duplikat tag yang menampilkan tombol hapus, kemudian edit beberap kelas nya, href nya, dan namanya
+
+BUAT HALAMAN FORM EDIT DATA dan ROUT nya
+Sebenarnya halaman dan rout form edit data ini hampir sama dengan halaman form tambah data. Oleh karena itu biar cepat bisa diduplikat kemudian diedit-edit.
+
+01. Buat raout dengan metode app.get(). Atur agar requestnya berupa url '/contact/edit/:nama',
+02. Lakukan pencarian data kontak berdasarkan nama yang dikirim di url nya. Nama yang ada di url tersebut telah ditangkap oleh req.params.nama,
+03. Lakukan pencarian menggunakan function findContact() yang sudah dibuat sebelumnya.
+04. Kirim hasil pencarian agar dapat ditampilkan dihalaman edit-contact.ejs

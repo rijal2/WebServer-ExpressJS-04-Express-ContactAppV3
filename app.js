@@ -142,6 +142,22 @@ app.get('/contact/delete/:nama', (req, res) => {
         res.redirect('/contact') //Setelah data disimpan maka langsung tampil halaman '/contact'
     }
 })
+
+// Edit data contact
+//Halaman Form Tambah data kontak
+app.get('/contact/edit/:nama', (req, res) => {
+    //Tangkap data nama yang dikirim melalui url diatas. Kemudian lakukan pencarian berdasarkan data nama tersebut di database menggunakan function yang telah dibuat, yaitu findContact(nama)
+    const contact = findContact(req.params.nama);
+
+    res.render('edit-contact', {
+        title: "Form Edit Data Contact",
+        layout: "layouts/main-layout",
+
+        // Selain mengirimkan tittle dan layout, kirimkan juga data contact yang ada pada variable const contact diatas
+        contact,
+    })
+})
+
 //Setting halaman Detail Contact
 app.get('/contact/:nama', (req, res) => {
     // res.sendFile('./contact.html', {root: __dirname})
