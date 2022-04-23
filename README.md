@@ -75,3 +75,14 @@ Pada tahap ini akan sedikit memberi value pada form input di edit-contact.ejs
     contoh:
         value="<%= contact.email %>
 03. Dengan begitu maka form edit data sudah terisi dengan data-data sesuai dengan data nama yang akan diedit.
+
+PROSES UBAH DATA
+Sebelum memproses data, sebaiknya terlebih dahulu dibuat sebuah elemen input pada form edit data contact. Elemen ini bersifat hidden (tidak terlihat dihalaman) yang value nya berisi nama lama, agar apabila terjadi perubahan pada nama yang dilakukan oleh user, maka nama lama  masih bisa di akses.
+
+01. Buat tag input dengan type hidden dan value nama yang akan diedit
+    <input type="hidden" name="oldName" value="<%= contact.nama %> ">
+
+    Ket:
+    Tag tersebut harus disimpan di dalam tag form.
+
+02. 
