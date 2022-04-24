@@ -2,7 +2,7 @@ const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const req = require('express/lib/request');
 const res = require('express/lib/response');
-const { loadContact, findContact, addContact, cekDuplikat, deleteContact } = require('./utils/contacts');
+const { loadContact, findContact, addContact, cekDuplikat, deleteContact, updateContact } = require('./utils/contacts');
 const { body, validationResult, check } = require('express-validator');
 const session = require('express-session');
 const cookieParser = require('cookie-parser')
@@ -186,11 +186,10 @@ app.post('/contact/update', [
         })
     
     } else{
-        console.log(`tidak ada error`)
-        res.send(req.body)
-        // addContact(req.body);
-        // req.flash('pesan', 'Data contact berhasil ditambahkan') // Setting flash massage
-        // res.redirect('/contact') //Setelah data disimpan maka langsung tampil halaman '/contact'
+        
+        updateContact(req.body);
+        req.flash('pesan', 'Data contact berhasil diubah') // Setting flash massage
+        res.redirect('/contact') //Setelah data disimpan maka langsung tampil halaman '/contact'
     }
 })
 

@@ -135,3 +135,5 @@ Hal tersebut bisa di atasi dengan pengkondisian pada form edit data kontak. Pada
 Jika di dalam data contact yang dikirim tidak terdapat contact.oldName maka gunakan contact.nama, sehingga tag input tersebut akan berubah menjadi seperti di bawah ini
 
     <input type="hidden" name="oldName" value="<%= contact.oldName || contact.nama %>">
+
+PROSESS PEMBUATAN FUNCTION UBAH / EDIT DATA
