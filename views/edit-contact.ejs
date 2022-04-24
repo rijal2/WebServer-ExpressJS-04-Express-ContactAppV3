@@ -14,7 +14,7 @@
             <% } %>
 
             <form method="post" action="/contact/update">
-                <input type="hidden" name="oldName" value="<%= contact.nama %> ">
+                <input type="hidden" name="oldName" value="<%= contact.oldName || contact.nama %>">
 
                 <div class="mb-3">
                   <label for="nama" class="form-label">Nama Mahasiswa</label>

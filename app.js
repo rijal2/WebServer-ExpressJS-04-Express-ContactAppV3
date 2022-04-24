@@ -144,7 +144,7 @@ app.get('/contact/delete/:nama', (req, res) => {
 })
 
 // Edit data contact (Ada dua rout)
-// 01. Rout Halaman Form Tambah data kontak
+// 01. Rout Halaman Form Edit data kontak
 app.get('/contact/edit/:nama', (req, res) => {
     //Tangkap data nama yang dikirim melalui url diatas. Kemudian lakukan pencarian berdasarkan data nama tersebut di database menggunakan function yang telah dibuat, yaitu findContact(nama)
     const contact = findContact(req.params.nama);
@@ -159,8 +159,39 @@ app.get('/contact/edit/:nama', (req, res) => {
 })
 
 // 02. Roust Proses Ubah / edit data
-app.post('/contact/update', (req, res) => {
-    res.send(req.body)
+app.post('/contact/update', [
+    body('nama').custom((value, {req}) => {
+        const duplikat = cekDuplikat(value)
+        console.log(req.body.oldName)
+        console.log(value)
+        console.log(duplikat)
+        if( value !== req.body.oldName && duplikat){
+            throw new Error('Nama yang diinput sudah ada. Silahkan gunakan nama lain!')
+        }
+        return true
+    }),
+    check('email', 'Email yang diinput tidak valid!').isEmail(),
+    check('nohp', 'No HP yang diinput tidak valid!').isMobilePhone('id-ID')
+], (req, res) => {
+    const errors = validationResult(req);
+
+    //Lakukan pengecekan errors, apakah ada isinya atau tidak
+    if(!errors.isEmpty()){
+        // return res.status(400).json({ errors: errors.array() });
+        res.render('edit-contact', {
+            title: "Form Edita Data Contact",
+            layout: "layouts/main-layout",
+            errors: errors.array(),
+            contact: req.body
+        })
+    
+    } else{
+        console.log(`tidak ada error`)
+        res.send(req.body)
+        // addContact(req.body);
+        // req.flash('pesan', 'Data contact berhasil ditambahkan') // Setting flash massage
+        // res.redirect('/contact') //Setelah data disimpan maka langsung tampil halaman '/contact'
+    }
 })
 
 //Setting halaman Detail Contact

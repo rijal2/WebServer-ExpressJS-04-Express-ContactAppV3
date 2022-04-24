@@ -77,7 +77,7 @@ Pada tahap ini akan sedikit memberi value pada form input di edit-contact.ejs
 03. Dengan begitu maka form edit data sudah terisi dengan data-data sesuai dengan data nama yang akan diedit.
 
 PROSES UBAH DATA
-Sebelum memproses data, sebaiknya terlebih dahulu dibuat sebuah elemen input pada form edit data contact. Elemen ini bersifat hidden (tidak terlihat dihalaman) yang value nya berisi nama lama, agar apabila terjadi perubahan pada nama yang dilakukan oleh user, maka nama lama  masih bisa di akses.
+Sebelum memproses data, sebaiknya terlebih dahulu dibuat sebuah elemen input pada form edit data contact. Elemen ini bersifat hidden (tidak terlihat dihalaman) yang value nya berisi nama lama, agar apabila terjadi perubahan pada nama yang dilakukan oleh user, maka nama lama  masih bisa di akses. Nama lama ini akan bermanfaat saat proses validasi nama nantinya.
 
 01. Buat tag input dengan type hidden dan value nama yang akan diedit
     <input type="hidden" name="oldName" value="<%= contact.nama %> ">
@@ -108,8 +108,30 @@ Sedangkan atribut action adalah url request yang dikirim oleh user. url ini haru
 
     {
         oldName: "Nama5 ",
-        nama: "Nama5",
+        nama: "NamaLima",
         email: "email5@gmail.com",
         nohp: "0812314234221"
     }
 
+PROSES VALIDASI
+Sama seperti pada proses Tambah Data Kontak, pada proses edit/ubah data ini juga perlu validasi ulang, baik itu nama, email, maupun no.hp.
+
+
+VALIDASI NAMA
+Kriteria Validasi Nama:
+a. Boleh menggunakan nama lama
+b. Tidak boleh ada nama duplikat
+
+    if( value !== req.body.oldName && duplikat){
+    
+    }
+
+Jika terjadi error pada saat simpan data perubahan, dan error itu ada pada nama. Maka jika ditekan simpan perubahan data sekali lagi, data tersebut akan dikirimkan ke database. Padahal nama tersebut masih error. Oleh karenaitu perlu diperbaiki.
+
+Hal tersebut bisa di atasi dengan pengkondisian pada form edit data kontak. Pada tag form terdapat elemen input yang bersifat hidden, dimana value nya bisa diatur sedemikian rupa.
+    
+    <input type="hidden" name="oldName" value="<%= contact.nama %>">
+
+Jika di dalam data contact yang dikirim tidak terdapat contact.oldName maka gunakan contact.nama, sehingga tag input tersebut akan berubah menjadi seperti di bawah ini
+
+    <input type="hidden" name="oldName" value="<%= contact.oldName || contact.nama %>">
